@@ -2,24 +2,30 @@ package whclient
 
 import (
 	"testing"
+
+	"github.com/ehganzlieb/willwohnen/src/dto"
 )
 
 func TestBullshit(t *testing.T) {
-	/*
-		d1, err := dto.DistrictByNumber(1)
-		if err != nil {
-			t.Fatal(err)
-		}
 
-		d2, err := dto.DistrictByNumber(2)
-		if err != nil {
-			t.Fatal(err)
-		}
-		d10, err := dto.DistrictByNumber(10)
-		if err != nil {
-			t.Fatal(err)
-		}
-	*/
+	d1, err := dto.DistrictByNumber(1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	d2, err := dto.DistrictByNumber(2)
+	if err != nil {
+		t.Fatal(err)
+	}
+	d10, err := dto.DistrictByNumber(10)
+	if err != nil {
+		t.Fatal(err)
+	}
+	d21, err := dto.DistrictByNumber(21)
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	q := Query{
 		MinPrice:     toPointerType(int64(500)),
 		MaxPrice:     nil,
@@ -33,9 +39,9 @@ func TestBullshit(t *testing.T) {
 		Rooms6to9:    false,
 		Rooms10:      false,
 		RoomsUnknown: true,
-		/*Districts: []dto.District{
-			*d1, *d2, *d10,
-		},*/
+		Districts: []dto.District{
+			*d1, *d2, *d10, *d21,
+		},
 	}
 
 	wham, err := q.ProcessAll()

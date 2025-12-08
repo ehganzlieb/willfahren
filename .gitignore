@@ -1,1 +1,6 @@
 src/whClient/out.*
+.DS_Store
+*/.DS_Store
+go.sum
+*.json
+*.csv
