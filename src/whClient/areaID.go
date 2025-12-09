@@ -6,6 +6,15 @@ import (
 	"github.com/ehganzlieb/willwohnen/src/dto"
 )
 
+/*
+AreaID returns the WH area id for a given district.
+
+If the postcode for the district is not found in the areaIDs map,
+an error is returned.
+The returned uint64 is the WH area id, and the error is nil if
+the postcode is found, or an error containing the district
+name if the postcode is not found.
+*/
 func AreaID(d *dto.District) (uint64, error) {
 	id, ok := areaIDs[d.PostCode()]
 	if !ok {

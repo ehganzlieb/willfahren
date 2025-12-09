@@ -65,6 +65,10 @@ type WHAdvert struct {
 
 type WHAdvertMap map[uint64]WHAdvert
 
+/*
+Merge merges the given WHAdvertMap into the current one.
+It returns the current WHAdvertMap.
+*/
 func (wham *WHAdvertMap) Merge(other WHAdvertMap) WHAdvertMap {
 	maps.Copy((*wham), other)
 	return *wham
@@ -77,6 +81,13 @@ type WHQueryResult struct {
 	Adverts       WHAdvertMap
 }
 
+/*
+URL generates a URL object from a Query object.
+
+It sets the query parameters in the URL according to the
+fields of the Query object. It returns an error if any of
+the fields are invalid.
+*/
 func (q Query) URL() (*url.URL, error) {
 	u, err := url.Parse(WHImmoBaseURL)
 	if err != nil {
@@ -134,9 +145,15 @@ func (q Query) URL() (*url.URL, error) {
 
 	u.RawQuery = uq.Encode()
 	return u, nil
-
 }
 
+/*
+ProcessAll fetches all results according to the query
+
+by first calling Process and then FollowUp until all
+results are fetched. It returns a map of ad id to WHAdvert
+and an error if any of the calls fail.
+*/
 func (q Query) ProcessAll() (*WHAdvertMap, error) {
 	//first process, then followup until all results are fetched
 	whq, err := q.Process()
@@ -159,6 +176,14 @@ func (q Query) ProcessAll() (*WHAdvertMap, error) {
 	return &wham, nil
 }
 
+/*
+Process fetches the results of the query and returns a WHQueryResult
+object containing the results of the query and an error if any
+of the calls fail. It first generates a URL according to the query
+parameters and then fetches the HTML of the page. It then parses the
+HTML to extract the results of the query and return a WHQueryResult
+object containing the results and an error if any of the calls fail.
+*/
 func (q Query) Process() (*WHQueryResult, error) {
 	var whd WHQueryResult
 	qu, err := q.URL()
@@ -180,7 +205,14 @@ func (q Query) Process() (*WHQueryResult, error) {
 
 }
 
-// Request with incremented by one or set to two (if nil) page
+/*
+FollowUp fetches the next page of results according to the query.
+
+It increments the page field of the Query object and then calls Process
+to fetch the results of the query. It returns a WHQueryResult
+object containing the results of the query and an error if any
+of the calls fail.
+*/
 func (whd *WHQueryResult) FollowUp(q *Query) (*WHQueryResult, error) {
 	if q.page == nil {
 		q.page = toPointerType(int64(2))
@@ -191,6 +223,14 @@ func (whd *WHQueryResult) FollowUp(q *Query) (*WHQueryResult, error) {
 	return q.Process()
 }
 
+/*
+interpretWHData takes a HTML document and extracts the Willhaben data from it.
+It returns a WHQueryResult object containing the results of the query and an error if any of the calls fail.
+It first extracts the JSON data from the HTML element and then unmarshals it into a map.
+It then extracts the rows total, rows in set and rows requested from the map and sets the corresponding fields of the WHQueryResult object.
+It then extracts the adverts from the map and parses each advert into a WHAdvert object.
+It then sets the Adverts field of the WHQueryResult object to the parsed adverts.
+*/
 func interpretWHData(r soup.Root) (WHQueryResult, error) {
 	var whd WHQueryResult
 	whJson := r.Find("script", "type", "application/json")
@@ -215,6 +255,18 @@ func interpretWHData(r soup.Root) (WHQueryResult, error) {
 	return whd, nil
 }
 
+/*
+parseAdvert parses a raw advert map into a WHAdvertMap.
+
+It takes the raw advert map, extracts the fields of the advert from the map,
+and parses each field into a WHAdvert object. It then sets the Adverts
+field of the WHAdvertMap object to the parsed adverts.
+The function will return an error if the raw advert map does not contain
+the required fields, or if any of the fields are invalid.
+The required fields are id, description, and attributes which contains
+the attribute name and value of the advert. The function will also return
+an error if any of the attribute values are invalid.
+*/
 func (wam WHAdvertMap) parseAdvert(rawAd map[string]interface{}) (WHAdvertMap, error) {
 	var adv WHAdvert
 	idString := rawAd["id"].(string)
@@ -309,10 +361,17 @@ func (wam WHAdvertMap) parseAdvert(rawAd map[string]interface{}) (WHAdvertMap, e
 	return wam, nil
 }
 
+/*
+firstStringVal is a helper function that takes a map[string]interface{}
+and returns the first string
+value in the "values" key. If the map is empty, or if the first value
+is not a string, it will return an empty string.
+*/
 func firstStringVal(a map[string]interface{}) string {
 	return a["values"].([]interface{})[0].(string)
 }
 
+// toPointerType is a helper function that takes a value of any type and returns a pointer to it.
 func toPointerType[T any](t T) *T {
 	return &t
 }
