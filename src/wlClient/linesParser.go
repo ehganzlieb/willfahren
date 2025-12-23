@@ -42,7 +42,6 @@ func parseLinesCSV(input string) ([]dto.Line, error) {
 	}
 
 	indexMap := make(map[string]int)
-
 	for i, v := range fieldNames {
 		indexMap[v] = i
 	}

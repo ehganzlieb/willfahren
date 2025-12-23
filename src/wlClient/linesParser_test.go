@@ -31,7 +31,13 @@ func TestParseLinesCSV(t *testing.T) {
 	assert.Equal(t, lineTypeMap["BB"], dto.LineTypeBadnerBahn)
 	assert.Equal(t, lineTypeMap["N6"], dto.LineTypeNightBus)
 
+	nrOfType := make(map[dto.LineType]int)
 	for k, v := range lineTypeMap {
 		t.Logf("\t%s\t:\t%s\n", k, v)
+		nrOfType[v]++
+	}
+
+	for k, v := range nrOfType {
+		t.Logf("%dx %s", v, k)
 	}
 }
