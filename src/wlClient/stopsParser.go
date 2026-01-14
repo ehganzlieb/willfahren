@@ -28,14 +28,14 @@ const (
 )
 
 /*
-parseStopsCSV parses a CSV string and returns a slice of Stop.
+ParseStopsCSV parses a CSV string and returns a slice of Stop.
 
 The CSV string is expected to have the columns HTXT, HTXTK, SHAPE, and HLINIEN. Other columns are ignored.
 The function will return an error if the CSV string is malformed.
 The returned slice of Stop will contain the parsed stops.
 The stops contain lines with line names
 */
-func parseStopsCSV(input string) ([]*Stop, error) {
+func ParseStopsCSV(input string) ([]*Stop, error) {
 	//TODO: concurrency
 
 	r := csv.NewReader(strings.NewReader(input))

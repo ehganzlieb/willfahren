@@ -1,9 +1,8 @@
 package dto
 
 type Line struct {
-	Name  string
-	Type  LineType
-	Stops []*Stop
+	Name string
+	Type LineType
 }
 
 type LineType uint

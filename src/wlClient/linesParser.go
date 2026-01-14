@@ -25,13 +25,13 @@ const (
 )
 
 /*
-parseLinesCSV parses a CSV string and returns a slice of dto.Lines.
+ParseLinesCSV parses a CSV string and returns a slice of dto.Lines.
 
 The CSV string is expected to have the columns BEZEICHNUNG and VERKEHRSMITTEL, and to contain lines with the values ptTram, ptMetro, ptTrainS, ptBusCity, ptBusNight, pt_RufbusTag, ptBadner_Bahn, and pt_RufbusNacht for VERKEHRSMITTEL.
 The function will return an error if the CSV string is malformed, or if a line contains an unknown VERKEHRSMITTEL value.
 The returned slice of dto.Lines will contain the parsed lines, and will not contain the stops as they are not contained in this file.
 */
-func parseLinesCSV(input string) ([]dto.Line, error) {
+func ParseLinesCSV(input string) ([]dto.Line, error) {
 	r := csv.NewReader(strings.NewReader(input))
 	r.Comma = ';'
 

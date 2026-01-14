@@ -14,7 +14,7 @@ var testLines string
 
 func TestParseLinesCSV(t *testing.T) {
 
-	lines, err := parseLinesCSV(testLines)
+	lines, err := ParseLinesCSV(testLines)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -90,7 +90,7 @@ var districts = map[int]District{
 	},
 	15: {
 		Name:         "Rudolfsheim-Fünfhaus",
-		InsiderNames: []string{"Rudolfscrime"},
+		InsiderNames: []string{"Rudolfscrime", "RH5H"},
 		Number:       15,
 	},
 	16: {
@@ -115,7 +115,7 @@ var districts = map[int]District{
 	},
 	20: {
 		Name:         "Brigittenau",
-		InsiderNames: []string{},
+		InsiderNames: []string{"Brighettonau"},
 		Number:       20,
 	},
 	21: {
@@ -125,7 +125,7 @@ var districts = map[int]District{
 	},
 	22: {
 		Name:         "Donaustadt",
-		InsiderNames: []string{},
+		InsiderNames: []string{"DC", "Donau City"},
 		Number:       22,
 	},
 	23: {
