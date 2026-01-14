@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/anaskhan96/soup"
-	"github.com/ehganzlieb/willwohnen/src/dto"
+	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
 )
 
 type Query struct {

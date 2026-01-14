@@ -1,6 +1,6 @@
 package wlclient
 
-import "github.com/ehganzlieb/willwohnen/src/dto"
+import "github.com/ehganzlieb/2025-10-26_willfahren/dto"
 
 // AggregateStops() combines the list of stops with the list of lines from the parse functions into a dto map with unique stop and line objects that correctly reference each other.
 func AggregateStops(stops []*Stop, lines []dto.Line) map[dto.Line][]*dto.Stop {
