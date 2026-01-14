@@ -17,4 +17,11 @@ func TestAggregateStops(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	//aggregate stops
+	aggregatedStops := AggregateStops(stops, lines)
+
+	for k, v := range aggregatedStops {
+		t.Logf("%s: %d", k, len(v))
+	}
 }
