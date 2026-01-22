@@ -37,6 +37,7 @@ const MaxPriceField = "PRICE_TO"
 const MinAreaField = "ESTATE_SIZE/LIVING_AREA_FROM"
 const MaxAreaField = "ESTATE_SIZE/LIVING_AREA_TO"
 const RoomsField = "NO_OF_ROOMS_BUCKET"
+const UpSellingField = "UPSELLING_AD_SEARCHRESULT"
 const Rooms1 = "1X1"
 const Rooms2 = "2X2"
 const Rooms3 = "3X3"
@@ -62,6 +63,7 @@ type WHAdvert struct {
 	PrivateOffer bool
 	PublishTime  *time.Time
 	Images       []url.URL
+	Upselling    bool
 }
 
 type WHAdvertMap map[uint64]WHAdvert
@@ -362,6 +364,8 @@ func (wam WHAdvertMap) parseAdvert(rawAd map[string]interface{}) (WHAdvertMap, e
 					Y: f2,
 				}
 			}
+		case UpSellingField:
+			adv.Upselling = true
 		}
 	}
 	wam[adv.ID] = adv
