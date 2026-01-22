@@ -3,6 +3,7 @@ package dto
 import "net/url"
 
 type Apartment struct {
+	ID          uint64
 	Title       string
 	Description string
 	Area        float32
@@ -10,6 +11,5 @@ type Apartment struct {
 	Price       float32
 	District    District
 	Location    Coordinates
-	StopsNearby []Stop
 	URL         url.URL
 }
