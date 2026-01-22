@@ -49,6 +49,9 @@ func TestBullshit(t *testing.T) {
 		t.Fatal(err)
 	}
 	t.Log("len(wham):", len(*wham))
-	t.Logf("%#v", wham)
+	//t.Logf("%#v", wham)
+	for k, v := range *wham {
+		t.Logf("%d: %+v, %+v", k, v, v.Coordinates)
+	}
 
 }

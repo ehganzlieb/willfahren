@@ -23,5 +23,9 @@ func TestAggregateStops(t *testing.T) {
 
 	for k, v := range aggregatedStops {
 		t.Logf("%s: %d", k, len(v))
+
+		for _, s := range v {
+			t.Logf("\t%+v", s)
+		}
 	}
 }
