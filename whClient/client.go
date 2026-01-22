@@ -55,6 +55,7 @@ type WHAdvert struct {
 	URL          *url.URL
 	Description  string
 	SellerName   string
+	Floor        *uint64
 	Area         *uint64
 	Coordinates  *dto.Coordinates
 	Rent         *float64
@@ -149,7 +150,6 @@ func (q Query) URL() (*url.URL, error) {
 
 /*
 ProcessAll fetches all results according to the query
-
 by first calling Process and then FollowUp until all
 results are fetched. It returns a map of ad id to WHAdvert
 and an error if any of the calls fail.
@@ -335,6 +335,13 @@ func (wam WHAdvertMap) parseAdvert(rawAd map[string]interface{}) (WHAdvertMap, e
 				log.Println(err)
 			} else {
 				adv.Area = &u
+			}
+		case "FLOOR":
+			u, err := strconv.ParseUint(firstStringVal(a), 10, 64)
+			if err != nil {
+				log.Println(err)
+			} else {
+				adv.Floor = &u
 			}
 		case "PUBLISHED":
 			i, err := strconv.ParseInt(firstStringVal(a), 10, 64)
