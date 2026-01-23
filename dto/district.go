@@ -12,6 +12,14 @@ func (d *District) PostCode() int {
 	return 1000 + d.Number*10
 }
 
+func DistrictFromPostCode(postcode int) (*District, error) {
+	d, ok := districts[(postcode-1000)/10]
+	if !ok {
+		return nil, fmt.Errorf("no district for postcode %d", postcode)
+	}
+	return &d, nil
+}
+
 var districts = map[int]District{
 	0: {
 		Name:         "Ganz Wien",
