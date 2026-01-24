@@ -1,4 +1,4 @@
-# WillFahren - Apartment search on steroids
+# Willfahren - Apartment search on steroids
 
 WillFahren is an ambitious project to build a comprehensive apartment search engine that aggregates listings from various sources. The goal is to provide a more detailed and user-friendly search experience for users.
 
