@@ -342,12 +342,15 @@ func (wam WHAdvertMap) parseAdvert(rawAd map[string]interface{}) (WHAdvertMap, e
 				adv.Area = &u
 			}
 		case "FLOOR":
-			// FLOOR can also be something weird like "EG" or "OG", we map these to 0 and 1 respectively for simplicity's sake
+			// FLOOR can also be something weird like "EG", "OG" or "DG", we map these to numeric floors for simplicity's sake.
 			switch firstStringVal(a) {
 			case "EG":
 				adv.Floor = toPointerType(uint64(0))
 			case "OG":
 				adv.Floor = toPointerType(uint64(1))
+			case "DG":
+				//to hell with it, all Dachgeschosses are now on the 6th floor
+				adv.Floor = toPointerType(uint64(6))
 			default:
 				u, err := strconv.ParseUint(firstStringVal(a), 10, 64)
 				if err != nil {
