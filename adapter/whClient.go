@@ -6,7 +6,8 @@ import (
 )
 
 /*
- */
+WHClientDtoAdapter converts a whclient.WHAdvert to a dto.Apartment
+*/
 func WHClientDtoAdapter(wha *whclient.WHAdvert) *dto.Apartment {
 
 	district, err := dto.DistrictFromPostCode(int(*wha.Postcode))
