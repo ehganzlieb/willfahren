@@ -52,16 +52,16 @@ func FilterRooms(minRooms, maxRooms int) ImmoListingsFilter {
 	}
 	if minRooms == 0 {
 		return func(il ImmoListing) bool {
-			return il.Rooms <= maxRooms
+			return il.Rooms <= float32(maxRooms)
 		}
 	}
 	if maxRooms == 0 {
 		return func(il ImmoListing) bool {
-			return il.Rooms >= minRooms
+			return il.Rooms >= float32(minRooms)
 		}
 	}
 	return func(il ImmoListing) bool {
-		return il.Rooms >= minRooms && il.Rooms <= maxRooms
+		return il.Rooms >= float32(minRooms) && il.Rooms <= float32(maxRooms)
 	}
 }
 

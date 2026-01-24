@@ -7,9 +7,9 @@ type Apartment struct {
 	Title       string
 	Description string
 	Area        float32
-	Rooms       int
+	Rooms       float32
 	Price       float32
-	District    District
-	Location    Coordinates
+	District    *District
+	Location    *Coordinates
 	URL         url.URL
 }

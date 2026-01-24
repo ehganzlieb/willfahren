@@ -60,6 +60,7 @@ type WHAdvert struct {
 	Area         *uint64
 	Coordinates  *dto.Coordinates
 	Rent         *float64
+	Rooms        *float64
 	PrivateOffer bool
 	PublishTime  *time.Time
 	Images       []url.URL
