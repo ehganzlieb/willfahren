@@ -1,9 +1,9 @@
 package cache
 
 import (
-	"github.com/ehganzlieb/2025-10-26_willfahren/adapter"
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
-	whclient "github.com/ehganzlieb/2025-10-26_willfahren/whClient"
+	"github.com/ehganzlieb/willfahren/adapter"
+	"github.com/ehganzlieb/willfahren/dto"
+	whclient "github.com/ehganzlieb/willfahren/whClient"
 )
 
 // WHCache internally uses whclient but only dto externally

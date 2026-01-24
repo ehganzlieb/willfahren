@@ -1,4 +1,4 @@
-module github.com/ehganzlieb/2025-10-26_willfahren
+module github.com/ehganzlieb/willfahren
 
 go 1.25.4
 

@@ -3,7 +3,7 @@ package whclient
 import (
 	"fmt"
 
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
+	"github.com/ehganzlieb/willfahren/dto"
 )
 
 /*

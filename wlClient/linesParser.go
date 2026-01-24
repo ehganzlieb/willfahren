@@ -7,7 +7,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
+	"github.com/ehganzlieb/willfahren/dto"
 )
 
 const (

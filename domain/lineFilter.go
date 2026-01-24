@@ -1,7 +1,7 @@
 package domain
 
 import (
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
+	"github.com/ehganzlieb/willfahren/dto"
 )
 
 func FilterStops(stops []dto.Stop, maxdistance float64) ImmoListingsFilter {

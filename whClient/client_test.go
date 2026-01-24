@@ -3,7 +3,7 @@ package whclient
 import (
 	"testing"
 
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
+	"github.com/ehganzlieb/willfahren/dto"
 )
 
 func TestBullshit(t *testing.T) {

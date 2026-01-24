@@ -1,8 +1,8 @@
 package adapter
 
 import (
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
-	whclient "github.com/ehganzlieb/2025-10-26_willfahren/whClient"
+	"github.com/ehganzlieb/willfahren/dto"
+	whclient "github.com/ehganzlieb/willfahren/whClient"
 )
 
 /*

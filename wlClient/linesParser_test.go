@@ -4,7 +4,7 @@ import (
 	_ "embed"
 	"testing"
 
-	"github.com/ehganzlieb/2025-10-26_willfahren/dto"
+	"github.com/ehganzlieb/willfahren/dto"
 
 	"github.com/stretchr/testify/assert"
 )
