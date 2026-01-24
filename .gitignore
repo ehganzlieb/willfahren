@@ -1,4 +1,4 @@
-src/whClient/out.*
+whClient/out.*
 .DS_Store
 */.DS_Store
 go.sum

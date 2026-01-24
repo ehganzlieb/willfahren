@@ -6,6 +6,10 @@ import (
 	"github.com/asmarques/geodist"
 )
 
+const (
+	EarthMagicNumber = 111.320
+)
+
 type Coordinates struct {
 	X, Y float64 //in degrees
 }
@@ -47,15 +51,28 @@ func (c Coordinates) Distance(other Coordinates, formula DistanceFormula) float6
 	}
 }
 
-// calculate the difference in longitude and latitude in meters using the Manhattan formula
+/*
+ManhattanDistance() calculates the Manhattan distance between two coordinates.
+
+The Manhattan distance is the sum of the absolute differences of their respective coordinates.
+The result is in meters.
+Note that the Manhattan distance is a simple approximation of the walking distance in cities and does not take into account the curvature of the Earth.
+For a more accurate approximation, use HaversineDistance() or VincentyDistance().
+*/
 func (c Coordinates) ManhattanDistance(other Coordinates) float64 {
-	latitudeDifference := math.Abs(c.Y-other.Y) * 111.320
-	longitudeDifference := math.Abs(c.X-other.X) * 111.320 * math.Cos(c.Y*math.Pi/180)
+	latitudeDifference := math.Abs(c.Y-other.Y) * EarthMagicNumber
+	longitudeDifference := math.Abs(c.X-other.X) * EarthMagicNumber * math.Cos(c.Y*math.Pi/180)
 
 	return latitudeDifference + longitudeDifference
 
 }
 
+/*
+HaversineDistance() calculates the distance between two coordinates using the Haversine formula.
+
+The Haversine formula is an approximation to the great-circle distance between two points on a sphere.
+The result is in meters.
+*/
 func (c Coordinates) HaversineDistance(other Coordinates) float64 {
 	return geodist.HaversineDistance(c.toGeoDistPoint(), other.toGeoDistPoint())
 }
