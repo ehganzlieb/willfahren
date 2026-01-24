@@ -233,6 +233,8 @@ It first extracts the JSON data from the HTML element and then unmarshals it int
 It then extracts the rows total, rows in set and rows requested from the map and sets the corresponding fields of the WHQueryResult object.
 It then extracts the adverts from the map and parses each advert into a WHAdvert object.
 It then sets the Adverts field of the WHQueryResult object to the parsed adverts.
+
+So sorry for this code but the Willhaben "API" is a bit weird
 */
 func interpretWHData(r soup.Root) (WHQueryResult, error) {
 	var whd WHQueryResult
